@@ -16,6 +16,10 @@ sourceSets {
       srcDirs = ['src']
       output.classesDir = outDir
     }
+    resources {
+      srcDirs = ['src']
+      output.resourcesDir = outDir
+    }
   }
 }
 
@@ -23,7 +27,7 @@ sourceSets {
 
 defaultTasks 'deploy'
 
-task deploy(dependsOn: compileJava) {
+task deploy(dependsOn: [ 'compileJava', 'processResources' ] ) {
   inputs.files(fileTree(outDir))
   outputs.file(file(outJar))
 
