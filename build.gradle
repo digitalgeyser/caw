@@ -1,15 +1,21 @@
 def jarPath = "${System.properties['java.home']}/../lib/ant-javafx.jar"
 
+ant.taskdef (
+  resource: 'com/sun/javafx/tools/ant/antlib.xml',
+  classpath: jarPath,
+  uri: 'javafx'
+)
+
+task compile << {
+}
+
 task deploy << {
 
   println 'Adding java from: ' + jarPath
 
-  ant.taskdef (
-    name: 'fx_jar',
-    classname: 'com.sun.javafx.tools.ant.FXJar',
-    classpath: jarPath
-  )
-
   ant.echo(message: "hmmmm")
-  ant.fx_jar()
+  ant.'javafx:jar'(destfile: 'caw.jar') {
+    fileset(dir: 'out/production/CellularAutomataWorkbench')
+    application(name:'CellularAutomataWorkbench', mainClass: 'com.dg.caw.Main')
+  }
 }
