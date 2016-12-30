@@ -1,3 +1,5 @@
+apply plugin: 'java'
+
 def jarPath = "${System.properties['java.home']}/../lib/ant-javafx.jar"
 
 ant.taskdef (
@@ -5,6 +7,15 @@ ant.taskdef (
   classpath: jarPath,
   uri: 'javafx'
 )
+
+sourceSets {
+  main {
+    java {
+      srcDirs = ['src']
+      output.classesDir = 'out/production/CellularAutomataWorkbench/'
+    }
+  }
+}
 
 task compile << {
 }
