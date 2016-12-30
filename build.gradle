@@ -38,3 +38,7 @@ task deploy(dependsOn: [ 'compileJava', 'processResources' ] ) {
     }
   }
 }
+
+task run(dependsOn: 'deploy') << {
+ "java -jar ${outJar}".execute()
+}
