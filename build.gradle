@@ -1,6 +1,8 @@
 apply plugin: 'java'
 
 def jarPath = "${System.properties['java.home']}/../lib/ant-javafx.jar"
+def outDir = 'out/production/CellularAutomataWorkbench/'
+def outJar = 'caw.jar'
 
 ant.taskdef (
   resource: 'com/sun/javafx/tools/ant/antlib.xml',
@@ -12,21 +14,23 @@ sourceSets {
   main {
     java {
       srcDirs = ['src']
-      output.classesDir = 'out/production/CellularAutomataWorkbench/'
+      output.classesDir = outDir
     }
   }
 }
 
-task compile << {
-}
+// Tasks
 
-task deploy << {
+defaultTasks 'deploy'
 
-  println 'Adding java from: ' + jarPath
+task deploy(dependsOn: compileJava) {
+  inputs.files(fileTree(outDir))
+  outputs.file(file(outJar))
 
-  ant.echo(message: "hmmmm")
-  ant.'javafx:jar'(destfile: 'caw.jar') {
-    fileset(dir: 'out/production/CellularAutomataWorkbench')
-    application(name:'CellularAutomataWorkbench', mainClass: 'com.dg.caw.Main')
+  doLast {
+    ant.'javafx:jar'(destfile: outJar) {
+      fileset(dir: 'out/production/CellularAutomataWorkbench')
+      application(name:'CellularAutomataWorkbench', mainClass: 'com.dg.caw.Main')
+    }
   }
 }
