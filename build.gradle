@@ -1,0 +1,15 @@
+def jarPath = "${System.properties['java.home']}/../lib/ant-javafx.jar"
+
+task deploy << {
+
+  println 'Adding java from: ' + jarPath
+
+  ant.taskdef (
+    name: 'fx_jar',
+    classname: 'com.sun.javafx.tools.ant.FXJar',
+    classpath: jarPath
+  )
+
+  ant.echo(message: "hmmmm")
+  ant.fx_jar()
+}
