@@ -14,6 +14,8 @@
     <bytecodeTargetLevel>
       <module name="caw_main" target="1.5" />
       <module name="caw_test" target="1.5" />
+      <module name="CellularAutomataWorkbench_main" target="1.8" />
+      <module name="CellularAutomataWorkbench_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

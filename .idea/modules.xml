@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CellularAutomataWorkbench.iml" filepath="$PROJECT_DIR$/CellularAutomataWorkbench.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/caw_main.iml" filepath="$PROJECT_DIR$/.idea/modules/caw_main.iml" group="caw" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/caw_test.iml" filepath="$PROJECT_DIR$/.idea/modules/caw_test.iml" group="caw" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/CellularAutomataWorkbench.iml" filepath="$PROJECT_DIR$/.idea/modules/CellularAutomataWorkbench.iml" />
     </modules>
   </component>
 </project>
