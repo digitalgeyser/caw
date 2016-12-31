@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/CellularAutomataWorkbench.iml" filepath="$PROJECT_DIR$/.idea/modules/CellularAutomataWorkbench.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/CellularAutomataWorkbench_main.iml" filepath="$PROJECT_DIR$/.idea/modules/CellularAutomataWorkbench_main.iml" group="CellularAutomataWorkbench" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/CellularAutomataWorkbench_test.iml" filepath="$PROJECT_DIR$/.idea/modules/CellularAutomataWorkbench_test.iml" group="CellularAutomataWorkbench" />
     </modules>
   </component>
 </project>
