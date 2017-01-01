@@ -34,7 +34,7 @@ task deploy(dependsOn: [ 'compileJava', 'processResources' ] ) {
   doLast {
     ant.'javafx:jar'(destfile: outJar) {
       fileset(dir: 'out/production/CellularAutomataWorkbench')
-      application(name:'CellularAutomataWorkbench', mainClass: 'com.dg.caw.Main')
+      application(name:'CellularAutomataWorkbench', mainClass: 'com.dg.caw.ui.Main')
     }
   }
 }

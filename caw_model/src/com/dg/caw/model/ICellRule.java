@@ -12,5 +12,5 @@ public interface ICellRule<T extends ICellState> {
      * @param cell
      * @return
      */
-    public T nextState(ICell<T> cell);
+    T nextState(ICell<T> cell);
 }

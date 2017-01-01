@@ -13,11 +13,11 @@ public interface ICell <T extends ICellState> {
      * Returns the current state of this cell.
      * @return
      */
-    public T state();
+    T state();
 
     /**
      * Returns the stream over all the neighbors.
      * @return
      */
-    public Stream<ICell<T>> neighbors();
+    Stream<ICell<T>> neighbors();
 }
