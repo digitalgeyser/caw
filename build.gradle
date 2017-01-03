@@ -1,7 +1,7 @@
 apply plugin: 'java'
 
 def jarPath = "${System.properties['java.home']}/../lib/ant-javafx.jar"
-def outDir = 'out/production/CellularAutomataWorkbench/'
+def outDir = 'out/production/'
 def outJar = 'caw.jar'
 
 ant.taskdef (
@@ -11,29 +11,58 @@ ant.taskdef (
 )
 
 sourceSets {
-  main {
+  model {
     java {
-      srcDirs = ['src']
-      output.classesDir = outDir
+      srcDirs = ['caw_model/src']
+      output.classesDir = outDir + 'caw_model/'
     }
     resources {
-      srcDirs = ['src']
-      output.resourcesDir = outDir
+      srcDirs = ['caw_model/src']
+      output.resourcesDir = outDir + 'caw_model/'
+    }
+  }
+  ui {
+    java {
+      srcDirs = ['caw_ui/src']
+      output.classesDir = outDir + 'caw_ui/'
+    }
+    resources {
+      srcDirs = ['caw_ui/src']
+      output.resourcesDir = outDir + 'caw_ui/'
+    }
+  }
+  rules {
+    java {
+      srcDirs = ['caw_rules/src']
+      output.classesDir = outDir + 'caw_rules/'
+    }
+    resources {
+      srcDirs = ['caw_rules/src']
+      output.resourcesDir = outDir + 'caw_rules/'
     }
   }
 }
 
+dependencies {
+  uiCompile sourceSets.rules.output
+  uiCompile sourceSets.model.output
+  rulesCompile sourceSets.model.output
+}
+
+rulesClasses.dependsOn { modelClasses }
+uiClasses.dependsOn { modelClasses }
+uiClasses.dependsOn { rulesClasses }
+
 // Tasks
 
-defaultTasks 'deploy'
 
-task deploy(dependsOn: [ 'compileJava', 'processResources' ] ) {
+task deploy(dependsOn: [ 'uiClasses' ] ) {
   inputs.files(fileTree(outDir))
   outputs.file(file(outJar))
 
   doLast {
     ant.'javafx:jar'(destfile: outJar) {
-      fileset(dir: 'out/production/CellularAutomataWorkbench')
+      fileset(dir: 'out/production/caw_ui')
       application(name:'CellularAutomataWorkbench', mainClass: 'com.dg.caw.ui.Main')
     }
   }
@@ -42,3 +71,5 @@ task deploy(dependsOn: [ 'compileJava', 'processResources' ] ) {
 task run(dependsOn: 'deploy') << {
  "java -jar ${outJar}".execute()
 }
+
+defaultTasks 'deploy'
